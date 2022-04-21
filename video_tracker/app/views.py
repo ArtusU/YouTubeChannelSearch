@@ -10,7 +10,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     channels = Channel.objects.all()
-    context = {'channels': channels}
+    results = Video.objects.order_by('-views')[0:50]
+
+    context = {'channels': channels, 'results': results}
     return render(request, 'index.html', context)
 
 
