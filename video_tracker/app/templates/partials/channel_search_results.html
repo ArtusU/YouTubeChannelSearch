@@ -10,8 +10,7 @@
       <p class="modal-card-title">Search Results</p>
     </header>
     <section class="modal-card-body">
-      {% if results %} 
-      {% for result in results %}
+      {% if results %} {% for result in results %}
       <article class="media">
         <figure class="media-left">
           <p class="image is-64x64">
@@ -21,7 +20,9 @@
         <div class="media-content">
           <div class="content">
             <p>
-              <a><strong>{{ result.snipet.title }}</strong></a>
+              <a hx-post="{% url 'app:add-channel' result.snippet.channelId %}"
+                ><strong>{{ result.snippet.title }}</strong></a
+              >
               <br />
               {{ result.snippet.description }}
             </p>
