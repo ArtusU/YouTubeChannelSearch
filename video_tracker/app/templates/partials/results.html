@@ -4,7 +4,13 @@
   <section>
     <div class="container m-5">
       <div class="columns is-centered mt-5">
-        <button class="button is-primary">Generate</button>
+        <button
+          class="button is-primary"
+          hx-get="{% url 'app:generate' %}"
+          hx-target="#results-section"
+        >
+          Generate
+        </button>
       </div>
     </div>
   </section>
