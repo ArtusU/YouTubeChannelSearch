@@ -6,6 +6,7 @@ from django.conf import settings
 # Create your views here.
 from .models import Channel, Video, Channel
 from django.views.decorators.csrf import csrf_exempt
+from .tasks import get_video_stats
 
 
 def index(request):
@@ -42,4 +43,11 @@ def add_channel(request, channel_id):
     channels = Channel.objects.all()
     context = {'channels': channels}
     return render(request, 'partials/channels.html', context)
+
+
+def generate(request):
+    task = get_video_stats.delay()
+    context = {'task_id': task.task_id, 'value': 0}
+    return render(request, 'partials/progress_bar.html', context)
+
 
