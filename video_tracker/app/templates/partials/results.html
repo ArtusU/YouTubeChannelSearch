@@ -28,13 +28,19 @@
           </tr>
         </thead>
         <tbody>
+          {% for result in results %}
           <tr>
-            <td>name</td>
-            <td>title</td>
-            <td>views</td>
-            <td>likes</td>
-            <td>date_published</td>
+            <td>{{ result.channel.name }}</td>
+            <td>
+              <a href="https://youtube.com/watch?v={{ result.youtube_id }}"
+                >{{ result.title }}</a
+              >
+            </td>
+            <td>{{ result.views|intcomma }}</td>
+            <td>{{ result.likes|intcomma }}</td>
+            <td>{{ result.date_published }}</td>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
