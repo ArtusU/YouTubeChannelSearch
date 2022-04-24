@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from .views import index, channel_search, add_channel, generate, get_progress, get_next_rows
+from .views import index, channel_search, add_channel, generate, get_progress, get_next_rows, deletechannel
 
 app_name = 'app'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('generate/', generate, name='generate'),
     path('get_progress/<task_id>/', get_progress, name='get-progress'),
     path('get_next_rows/', get_next_rows, name='get-next-rows'),
+    path('delete_channel/<channel_id>/', deletechannel, name='delete-channel'),
 ]
