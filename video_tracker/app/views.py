@@ -61,11 +61,15 @@ def get_progress(request, task_id):
         results = Video.objects.order_by('-views')[0:50]
         context = {'results': results}
         return render(request, 'partials/results.html', context)
-    print(task_id)
-    print(percent_complete)
     context = {'task_id': task_id, 'value': percent_complete}
     return render(request, 'partials/progress_bar.html', context)
 
+
+def get_next_rows(request):
+    offset = int(request.GET['offset'])
+    results = Video.objects.order_by('-views')[offset:offset+50]
+    context = {'results': results, 'offset': offset+50}
+    return render(request, 'partials/result_rows.html', context)
 
 
 
