@@ -3,6 +3,7 @@ import requests
 from celery.result import AsyncResult
 from celery_progress.backend import Progress
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 # Create your views here.
@@ -70,6 +71,15 @@ def get_next_rows(request):
     results = Video.objects.order_by('-views')[offset:offset+50]
     context = {'results': results, 'offset': offset+50}
     return render(request, 'partials/result_rows.html', context)
+
+
+@csrf_exempt
+def deletechannel(request, channel_id):
+    Channel.objects.filter(pk=channel_id).delete()
+
+    channels = Channel.objects.all()
+    context = {'channels': channels}
+    return render(request, 'partials/channels.html', context)
 
 
 
