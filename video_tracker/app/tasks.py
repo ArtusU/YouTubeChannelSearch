@@ -48,6 +48,7 @@ def get_video_stats(self):
 
             for item in video_res.json()['items']:
                 date_published = datetime.strptime(item['snippet']['publishedAt'], '%Y-%m-%dT%H:%M:%SZ')
+                print(item['statistics'])
                 video = Video(
                     title=item['snippet']['title'],
                     views=item['statistics']['viewCount'],
